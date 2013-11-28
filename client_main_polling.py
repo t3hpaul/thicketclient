@@ -69,13 +69,13 @@ if __name__ == '__main__':
 	#dev_id = gen_id_val()
 
 	#Connect to the sensors
-	#device = connectSensors()
+	#xdevice = connectSensors()
 
 	#loop through and put the data onto the server
 	while True:
+		sleep(1.5)
 		logging.info('testing logging')
 		'''
-		sleep(1.5)
 		device.setOutputState(0,0)
 		#getting the IP here, don't really need to do this after some recent updates
 		#ip_addy = get_local_ip('eth0')
