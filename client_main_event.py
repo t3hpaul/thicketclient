@@ -18,6 +18,8 @@ from request_handler import put_value_change
 #that the sensor is plugged in at. With our board it ranges from 0-5. 
 #logging.basicConfig(filename='/var/log/lws/lws.log')
 
+log_info("creating log...")
+
 def sensorChanged(e):
  dev_id = gen_id_val()
  log_info( "Sensor change at %i: %i" % (e.index, e.value))
@@ -41,10 +43,10 @@ def checkSensors(device,sensor_number):
 #This method depends on the device that we are using. For us, it
 #happens to be the interfacekit.
 try:
-  log_info('creating the interface kit')
+ #log_info('creating the interface kit')
   device = InterfaceKit()
 except RuntimeError as e:
-  loggin.error("Error when trying to create the device: %s" % e.message)
+  log_warning("Error when trying to create the device: %s" % e.message)
 
 #This connects to the device.
 try:
