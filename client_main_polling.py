@@ -62,21 +62,15 @@ if __name__ == '__main__':
 
 	#loop through and put the data onto the server
 	while True:
-
 		sleep(1.5)
 		device.setOutputState(0,0)
-
 		#getting the IP here, don't really need to do this after some recent updates
 		#ip_addy = get_local_ip('eth0')
 		#print "IP is %s"%ip_addy	
-		
-
 		sensor_data = checkSensors(device,5)
 		#print sensor_data
-
 		response = put_value_change(dev_id,sensor_data,True)
-
-
+		device.setOutputState(0,1)
 		#Sets some kind of ouput based on the response that is sent back(not used at the time)
 		#if response == 0:
 			#device.setOutputState(0,1)
