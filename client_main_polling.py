@@ -35,6 +35,7 @@ def connectSensors():
   		device = InterfaceKit()
 	except RuntimeError as e:
   		#log_error("Error when trying to create the device: %s" % e.message)
+  		print "ERROR"
   		log_error("Error when trying to create the device")
 
 	#This connects to the device.
@@ -43,7 +44,8 @@ def connectSensors():
   		device.openPhidget()
 	except PhidgetException as e:
  		#log_warning("Exception when trying to connect %i: %s" % (e.code, e.detail))		
-  		loggin.warning("Exception when trying to connect" )
+  		print "ERROR"
+  		logging.warning("Exception when trying to connect" )
   		exit(1)
 
 	return device
@@ -65,34 +67,18 @@ def checkSensors(device,sensor_number):
 	return values_dict
 
 if __name__ == '__main__':
-	#loop through and put the data onto the server
+	dev_id = gen_id_val()
+
+	#Connect to the sensors
+	device = connectSensors()
 	while True:
 		sleep(1.5)
-		#logging.info('testing logging')
-		#get the id_val of the device
-		dev_id = gen_id_val()
-
-		#Connect to the sensors
-		device = connectSensors()
 		
 		device.setOutputState(0,0)
-		#getting the IP here, don't really need to do this after some recent updates
-		#ip_addy = get_local_ip('eth0')
-		#print "IP is %s"%ip_addy	
 		sensor_data = checkSensors(device,5)
-		#print sensor_data
 		response = put_value_change(dev_id,sensor_data,True)
-		device.setOutputState(0,1)
-		#Sets some kind of ouput based on the response that is sent back(not used at the time)
-		#if response == 0:
-			#device.setOutputState(0,1)
-
 		
+		device.setOutputState(0,1)
+
 	device.closePhidget()
-
-#Only here to block until user keyboard input, which will end the program.
-#character = str(raw_input())
-
-#we have to close the phidget after we are done..
-#device.closePhidget()
 

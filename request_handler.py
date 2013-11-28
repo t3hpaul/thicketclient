@@ -39,11 +39,7 @@ def put_value_change(phidget_id, sensor_data, rest):
 			#return parse_response(the_request.text)
 		else:
 			pass
-#			the_request = send_json(temp_data,5505,False,True)
-			#logging.info('Response:%s'%the_request)
-#			print the_request
-
-#			logging.info('Response:%s'%the_request.text)	
+			
 	except:
 		pass
 
