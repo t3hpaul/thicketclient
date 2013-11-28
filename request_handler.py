@@ -7,9 +7,16 @@ import time as time
 import json
 import socket
 from logging_framework import *
-
+import logging
 
 agg_add='https://thicketagg-paulscloud.rhcloud.com/'
+
+logname = 'thicket.log'
+logging.basicConfig(filename=logname,
+                            filemode='a',
+                            format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+                            datefmt='%H:%M:%S',
+                            level=logging.INFO)
 
 #puts a value change onto the server
 def put_value_change(phidget_id, sensor_data, rest):
@@ -22,21 +29,21 @@ def put_value_change(phidget_id, sensor_data, rest):
 	for item in sensor_data:
 		temp_data[item] = sensor_data[item]
  	
- 	log_info(temp_data)
+ 	logging.info(temp_data)
 
 	try:
 		if rest:
 			temp_data=json.dumps(temp_data)
 			the_request = requests.post(url, data=temp_data, headers=headers)
-			#log_info(the_request.text)
+			#logging.info(the_request.text)
 			#return parse_response(the_request.text)
 		else:
 			pass
 #			the_request = send_json(temp_data,5505,False,True)
-			#log_info('Response:%s'%the_request)
+			#logging.info('Response:%s'%the_request)
 #			print the_request
 
-#			log_info('Response:%s'%the_request.text)	
+#			logging.info('Response:%s'%the_request.text)	
 	except:
 		pass
 
@@ -47,7 +54,7 @@ def parse_response(response):
 	else:
 		loaded = json.loads(response)
 		response_dict =  loaded[0]
-		log_info(response_dict)
+		logging.info(response_dict)
 		#date = json.loads(response_dict['date'])
 		#date = datetime.fromtimestamp(date['$date'])
 		response = response_dict['response']

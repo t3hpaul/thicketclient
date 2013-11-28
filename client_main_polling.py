@@ -16,14 +16,22 @@ import json
 from time import sleep
 from logging_framework import *
 import sys
+import logging
 
+
+logname = 'thicket.log'
+logging.basicConfig(filename=logname,
+                            filemode='a',
+                            format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+                            datefmt='%H:%M:%S',
+                            level=logging.INFO)
 
 '''
 Code to connect to the sensor itself.
 '''
 def connectSensors():
 	try:
-  		log_info('creating the interface kit')
+  		logging.info('creating the interface kit')
   		device = InterfaceKit()
 	except RuntimeError as e:
   		#log_error("Error when trying to create the device: %s" % e.message)
@@ -35,7 +43,7 @@ def connectSensors():
   		device.openPhidget()
 	except PhidgetException as e:
  		#log_warning("Exception when trying to connect %i: %s" % (e.code, e.detail))		
-  		log_warning("Exception when trying to connect")
+  		loggin.warning("Exception when trying to connect" )
   		exit(1)
 
 	return device
@@ -58,13 +66,15 @@ def checkSensors(device,sensor_number):
 
 if __name__ == '__main__':
 	#get the id_val of the device
-	dev_id = gen_id_val()
+	#dev_id = gen_id_val()
 
 	#Connect to the sensors
-	device = connectSensors()
+	#device = connectSensors()
 
 	#loop through and put the data onto the server
 	while True:
+		logging.info('testing logging')
+		'''
 		sleep(1.5)
 		device.setOutputState(0,0)
 		#getting the IP here, don't really need to do this after some recent updates
@@ -77,7 +87,9 @@ if __name__ == '__main__':
 		#Sets some kind of ouput based on the response that is sent back(not used at the time)
 		#if response == 0:
 			#device.setOutputState(0,1)
-	device.closePhidget()
+
+		'''
+	#device.closePhidget()
 
 #Only here to block until user keyboard input, which will end the program.
 #character = str(raw_input())
