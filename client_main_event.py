@@ -20,7 +20,7 @@ from request_handler import put_value_change
 
 def sensorChanged(e):
  dev_id = gen_id_val()
- print "Sensor change at %i: %i" % (e.index, e.value)
+ log_info( "Sensor change at %i: %i" % (e.index, e.value))
  values = checkSensors(device,6)
  put_value_change(dev_id,values,True)
 
