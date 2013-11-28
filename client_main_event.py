@@ -21,12 +21,14 @@ from request_handler import put_value_change
 log_info("creating log...")
 
 def sensorChanged(e):
+ device.setOutputState(0,1)
  dev_id = gen_id_val()
  sensor_index = e.index
  sesnor_value = e.value
  #log_info( "Sensor change at %i: %i" % (e.index, e.value))
  values = checkSensors(device,6)
  put_value_change(dev_id,values,True)
+ device.setOutputState(0,0)
 
 def checkSensors(device,sensor_number):
 	#since we can have up to 8 sensors, we check to all 8 ports

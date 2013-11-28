@@ -74,11 +74,10 @@ if __name__ == '__main__':
 	while True:
 		sleep(1.5)
 		
-		#device.setOutputState(0,0)
+		device.setOutputState(0,0)
 		sensor_data = checkSensors(device,5)
 		response = put_value_change(dev_id,sensor_data,True)
-		
-		#device.setOutputState(0,1)
+		device.setOutputState(0,1)
 
 	device.closePhidget()
 
