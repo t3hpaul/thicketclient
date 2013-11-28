@@ -15,6 +15,7 @@ from request_handler import put_value_change
 import json
 from time import sleep
 from logging_framework import *
+import sys
 
 
 '''
@@ -76,9 +77,14 @@ if __name__ == '__main__':
 			#device.setOutputState(0,1)
 	device.closePhidget()
 
+def handleException(excType, excValue, traceback):
+	pass
+
+sys.excepthook = handleException
 
 #Only here to block until user keyboard input, which will end the program.
 #character = str(raw_input())
 
 #we have to close the phidget after we are done..
 #device.closePhidget()
+
