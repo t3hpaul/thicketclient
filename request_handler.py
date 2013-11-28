@@ -28,11 +28,12 @@ def put_value_change(phidget_id, sensor_data, rest):
 		if rest:
 			temp_data=json.dumps(temp_data)
 			the_request = requests.post(str(url), data=temp_data, headers=headers)
-			log_info('Response:%s'%the_request.text)
+			#log_info(the_request.text)
 			#return parse_response(the_request.text)
 		else:
+			pass
 #			the_request = send_json(temp_data,5505,False,True)
-			log_info('Response:%s'%the_request)
+			#log_info('Response:%s'%the_request)
 #			print the_request
 
 #			log_info('Response:%s'%the_request.text)	

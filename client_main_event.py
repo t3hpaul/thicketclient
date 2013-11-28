@@ -22,7 +22,9 @@ log_info("creating log...")
 
 def sensorChanged(e):
  dev_id = gen_id_val()
- log_info( "Sensor change at %i: %i" % (e.index, e.value))
+ sensor_index = e.index
+ sesnor_value = e.value
+ #log_info( "Sensor change at %i: %i" % (e.index, e.value))
  values = checkSensors(device,6)
  put_value_change(dev_id,values,True)
 
@@ -46,14 +48,16 @@ try:
  #log_info('creating the interface kit')
   device = InterfaceKit()
 except RuntimeError as e:
-  log_warning("Error when trying to create the device: %s" % e.message)
+  log_warning("Error when trying to create the device")
+  #log_warning("Error when trying to create the device: %s" % e.message)
 
 #This connects to the device.
 try:
   log_info('connecting to the device!')
   device.openPhidget()
 except PhidgetException as e:
-  log_warning("Exception when trying to connect %i: %s" % (e.code, e.detail))		
+  log_warning("Exception when trying to connect")
+  #log_warning("Exception when trying to connect %i: %s" % (e.code, e.detail))		
   exit(1)
 
 device.setOnSensorChangeHandler(sensorChanged)
