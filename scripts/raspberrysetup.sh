@@ -37,6 +37,6 @@ cat /etc/thicketclient/scripts/initscript.sh > /etc/init.d/thicketclient
 chmod 777 /etc/init.d/thicketclient
 echo "Now testing the installation."
 python /etc/thicketclient/client/client_main_event.py
-mkdir /var/logs/lws 
+mkdir /var/logs/thicketclient 
 
 

@@ -1,6 +1,6 @@
 import logging
 
-logname = 'lws.log'
+logname = 'thicket.log'
 logging.basicConfig(filename=logname,
                             filemode='a',
                             format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
