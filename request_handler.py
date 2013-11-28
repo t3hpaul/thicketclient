@@ -7,7 +7,7 @@ import time as time
 import json
 import socket
 from logging_framework import *
-from client_mq_handler import send_json
+
 
 agg_add='https://thicketagg-paulscloud.rhcloud.com/'
 
