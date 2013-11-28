@@ -65,17 +65,16 @@ def checkSensors(device,sensor_number):
 	return values_dict
 
 if __name__ == '__main__':
-	#get the id_val of the device
-	#dev_id = gen_id_val()
-
-	#Connect to the sensors
-	#xdevice = connectSensors()
-
 	#loop through and put the data onto the server
 	while True:
 		sleep(1.5)
-		logging.info('testing logging')
-		'''
+		#logging.info('testing logging')
+		#get the id_val of the device
+		dev_id = gen_id_val()
+
+		#Connect to the sensors
+		device = connectSensors()
+		
 		device.setOutputState(0,0)
 		#getting the IP here, don't really need to do this after some recent updates
 		#ip_addy = get_local_ip('eth0')
@@ -88,8 +87,8 @@ if __name__ == '__main__':
 		#if response == 0:
 			#device.setOutputState(0,1)
 
-		'''
-	#device.closePhidget()
+		
+	device.closePhidget()
 
 #Only here to block until user keyboard input, which will end the program.
 #character = str(raw_input())
