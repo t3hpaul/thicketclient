@@ -26,14 +26,16 @@ def connectSensors():
   		log_info('creating the interface kit')
   		device = InterfaceKit()
 	except RuntimeError as e:
-  		log_error("Error when trying to create the device: %s" % e.message)
+  		#log_error("Error when trying to create the device: %s" % e.message)
+  		log_error("Error when trying to create the device")
 
 	#This connects to the device.
 	try:
  		#print 'connecting to the device!'
   		device.openPhidget()
 	except PhidgetException as e:
- 		log_warning("Exception when trying to connect %i: %s" % (e.code, e.detail))		
+ 		#log_warning("Exception when trying to connect %i: %s" % (e.code, e.detail))		
+  		log_warning("Exception when trying to connect")
   		exit(1)
 
 	return device
@@ -76,11 +78,6 @@ if __name__ == '__main__':
 		#if response == 0:
 			#device.setOutputState(0,1)
 	device.closePhidget()
-
-def handleException(excType, excValue, traceback):
-	pass
-
-sys.excepthook = handleException
 
 #Only here to block until user keyboard input, which will end the program.
 #character = str(raw_input())

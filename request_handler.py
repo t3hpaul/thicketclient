@@ -27,7 +27,7 @@ def put_value_change(phidget_id, sensor_data, rest):
 	try:
 		if rest:
 			temp_data=json.dumps(temp_data)
-			the_request = requests.post(str(url), data=temp_data, headers=headers)
+			the_request = requests.post(url, data=temp_data, headers=headers)
 			#log_info(the_request.text)
 			#return parse_response(the_request.text)
 		else:
@@ -65,41 +65,4 @@ def parse_response(response):
 #reg_info:
 
 def register_device(ip_address, dev_id):
-	#reg_info = {
-			#'ipaddress':str(ip_address),
-			#'devid':str(dev_id),
-			#'d':datetime.now().day,
-                        #'y':datetime.now().year,
-                        #'month':datetime.now().month,
-                        #'h':datetime.now().hour,
-                        #'min':datetime.now().minute,
-		#}
-	reg_info = {
-			'min':'hiii',
-		}
-
-
-	headers = {'content-type':'application/json'}
-        temp_data = {
-                         
-			 'ipaddress':ip_address,
-			 'devid':dev_id,
-			 'd':datetime.now().day,
-                         'y':datetime.now().year,
-                         'month':datetime.now().month,
-                         'h':datetime.now().hour,
-                         'min':datetime.now().minute,
-                         's':datetime.now().second,
-                         #'ms':int(round(time_.time()*1000)), 
-                         #'val':'10',
-                         #'phid':'123',
-                         #'sensid':'0',
-                     }
-
-	
-	#print temp_data
-	
-	temp_data=json.dumps(temp_data)
-
-        the_request = requests.put(str('http://%s/devices/register'%agg_add), data=temp_data, headers=headers)
-        log_info('Register_device response:%s'%the_request.text)
+	pass
